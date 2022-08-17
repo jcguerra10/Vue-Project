@@ -1,0 +1,65 @@
+@import "./base.css";
+
+:root {
+    --primary: hsla(335, 57%, 46%, 1);
+    --secondary: rgb(159, 210, 219);
+    --dark-primary: hsla(245, 25%, 54%, 1);
+    --ligth-primary: hsla(227, 38%, 63%, 1);
+    --wisteria: hsla(288, 41%, 69%, 1);
+    --white: hsla(0, 0%, 100%, 1);
+    --dark: #222222;
+}
+
+a,
+.primary {
+    text-decoration: none;
+    color: var(--white);
+    transition: 0.4s;
+    padding: 1rem;
+    border-radius: 5%;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: var(--secondary);
+    }
+}
+
+.active {
+    background-color: var(--secondary);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--primary);
+}
+
+@media (min-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    /* IMPORTANTE */
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    main {
+        flex-direction: row;
+    }
+}
+
