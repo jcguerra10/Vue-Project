@@ -1,22 +1,25 @@
 @import "./base.css";
 
 :root {
-    --primary: hsla(335, 57%, 46%, 1);
-    --secondary: rgb(159, 210, 219);
-    --dark-primary: hsla(245, 25%, 54%, 1);
-    --ligth-primary: hsla(227, 38%, 63%, 1);
-    --wisteria: hsla(288, 41%, 69%, 1);
-    --white: hsla(0, 0%, 100%, 1);
+    --primary: #ff9e00;
+    --secondary: #0062ff;
+    --white: #fff;
     --dark: #222222;
+    --dark-ligth: #4e4e4e;
+}
+
+h1 {
+    color: var(--white);
+    font-weight: bold;
 }
 
 a,
 .primary {
     text-decoration: none;
     color: var(--white);
-    transition: 0.4s;
+    transition: 0.6s;
     padding: 1rem;
-    border-radius: 5%;
+    border-radius: 0.5rem;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -35,8 +38,9 @@ header {
     display: flex;
     flex-direction: column;
     text-align: center;
+    gap: 1rem;
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 5rem;
     background-color: var(--primary);
 }
 
@@ -53,7 +57,6 @@ main {
     align-items: center;
     margin: 1rem;
     padding: 1rem;
-    /* IMPORTANTE */
     flex-direction: column;
 }
 
@@ -61,5 +64,34 @@ main {
     main {
         flex-direction: row;
     }
+}
+
+.publication {
+    display: flex;
+    width: 100%;
+    background-color: var(--dark-ligth);
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+.publication--item {
+    display: flex;
+    justify-content: center;
+
+}
+
+.publication--item__description {
+    height: 4rem;
+    color: var(--white);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.publication--item__img {
+    width: 100%;
+    height: 20rem;
+    object-fit: contain;
+    border-radius: .5rem;
 }
 

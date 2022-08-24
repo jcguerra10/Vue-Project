@@ -1,8 +1,8 @@
 <template>
     <header>
-        <a href="#">Social</a>
-        <a href="#">Publis</a>
-        <a href="#">New Publi</a>
+        <a href="/">Social</a>
+        <a href="/publis">Publis</a>
+        <a href="/newpublis">New Publi</a>
     </header>
 </template>
 

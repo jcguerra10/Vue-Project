@@ -1,5 +1,5 @@
 <template>
-    <main class="container">
+    <main class="">
         <div class="container--items">
             <div class="container--item container--item__text">
                 <h1>Welcome to Social</h1>
@@ -8,7 +8,7 @@
         </div>
         <div class="container--items">
             <div class="container--item container--item__img">
-                <img src="../resources/logo.png" alt="" />
+                <img src="../resources/logo.png" alt="logo" />
             </div>
         </div>
     </main>
@@ -28,9 +28,8 @@ export default {};
         padding: 10rem 2rem;
     }
     .container--item__text {
-        display: flex;
         justify-content: left;
-        flex-direction: column;
+        text-align: start;
     }
 }
 .container--item__text {
