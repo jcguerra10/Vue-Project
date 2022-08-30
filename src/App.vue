@@ -1,21 +1,11 @@
 <template>
     <div>
-        <div>
-            <Header />
-        </div>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/">
-                    <Social />
-                </Route>
-                <Route path="publis">
-                    <Publis />
-                </Route>
-                <Route path="newpublis">
-                    <NewPublis />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <header>
+            <router-link to="/">Social</router-link>
+            <router-link to="/publis">Publis</router-link>
+            <router-link to="/newpublis">New Publi</router-link>
+        </header>
+        <router-view/>
     </div>
 </template>
 

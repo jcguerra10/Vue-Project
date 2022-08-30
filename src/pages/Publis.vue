@@ -55,7 +55,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
     display: grid;
     gap: 3rem;
