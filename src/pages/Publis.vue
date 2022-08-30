@@ -16,35 +16,8 @@
 <script>
 import Publication from "../components/Publication.vue";
 export default {
-    data() {
-        return {
-            publisArray: [
-                {
-                    id: "1",
-                    img: "../resources/img1.jpeg",
-                    description: "Lorem ipsum dolor sit amet, consectetur adip",
-                    game: "EjMost",
-                },
-                {
-                    id: 2,
-                    img: "",
-                    description: "Dolor sit amet, lorem ipsum consectetur adip",
-                    game: "EjWars",
-                },
-                {
-                    id: 3,
-                    img: "",
-                    description: "Morbi vitae, consectetur adip",
-                    game: "Ejcasse",
-                },
-                {
-                    id: 4,
-                    img: "",
-                    description: "Morbi, Vitae consectetur adip",
-                    game: "Ejcasse",
-                },
-            ],
-        };
+    props: {
+        publisArray: Array
     },
     methods: {
         onListItemClick(publi) {
