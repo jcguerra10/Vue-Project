@@ -21,7 +21,7 @@ export default {
     },
     methods: {
         onListItemClick(publi) {
-            console.log("Click en " + publi.description);
+            this.$router.push(`/details/${publi.id}`)
         },
     },
     components: { Publication },

@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Social from "@/pages/Social.vue";
-import Publis from "@/pages/Publis.vue";
-import NewPublis from "@/pages/NewPublis.vue";
+import Social from "@/views/Social.vue";
+import Publis from "@/views/Publis.vue";
+import NewPublis from "@/views/NewPublis.vue";
+import PubliDetail from "@/views/PubliDetail.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
             path: "/NewPublis",
             name: "newpublis",
             component: NewPublis,
+        },
+        {
+            path: "/details/:id",
+            name: "details",
+            component: PubliDetail,
         }
     ],
 });
