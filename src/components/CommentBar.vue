@@ -32,6 +32,4 @@ export default {};
     gap: 1rem;
     grid-template-columns: 3fr 1fr;
 }
-.comentary--section {
-}
 </style>

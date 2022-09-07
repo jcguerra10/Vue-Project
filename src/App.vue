@@ -2,7 +2,11 @@
     <div>
         <Header />
         <router-view v-slot="{ Component }">
-            <component :is="Component" :publisArray="publisArray"></component>
+            <component
+                :is="Component"
+                :publisArray="publisArray"
+                @sendm="addPubli"
+            ></component>
         </router-view>
     </div>
 </template>
@@ -17,36 +21,36 @@ export default {
         return {
             publisArray: [
                 {
-                    id: 1,
+                    id: "1",
                     img: "../resources/img1.jpeg",
                     description: "Lorem ipsum dolor sit amet, consectetur adip",
                     game: "EjMost",
                     label: "Picture",
-                    genre: "Thriller"
+                    genre: "Thriller",
                 },
                 {
-                    id: 2,
+                    id: "2",
                     img: "",
                     description: "Dolor sit amet, lorem ipsum consectetur adip",
                     game: "EjWars",
                     label: "Picture",
-                    genre: "Suspenso"
+                    genre: "Suspenso",
                 },
                 {
-                    id: 3,
+                    id: "3",
                     img: "",
                     description: "Morbi vitae, consectetur adip",
                     game: "Ejcasse",
                     label: "Post",
-                    genre: "Comedy"
+                    genre: "Comedy",
                 },
                 {
-                    id: 4,
+                    id: "4",
                     img: "",
                     description: "Morbi, Vitae consectetur adip",
                     game: "Ejcasse",
                     label: "Post",
-                    genre: "Horror"
+                    genre: "Horror",
                 },
             ],
         };
@@ -55,8 +59,17 @@ export default {
         handleClick() {
             this.$router.push({
                 name: "publis", //use name for router push
-                params: this.publisArray
+                params: this.publisArray,
             });
+        },
+        addPubli(publi) {
+            console.log("publi");
+            this.publisArray = [...this.publisArray, publi];
+        },
+        handleSendMessage(event) {
+            // Our event handler gets the event, as well as any
+            // arguments the child passes to the event
+            console.log('guardee', event);
         },
     },
     components: {

@@ -15,13 +15,13 @@
                             class="form-input"
                             type="text"
                             placeholder="Description"
-                            v-model="description"
+                            v-model="publi.description"
                         />
                     </div>
                     <div class="row">
                         <p>Game</p>
-                        <select v-model="game" class="form-input">
-                            <option value="" selected>Select a Game</option>
+                        <select v-model="publi.game" class="form-input">
+                            <option value="" disabled>Select a Game</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -29,8 +29,8 @@
                     </div>
                     <div class="row">
                         <p>Labels</p>
-                        <select v-model="labels" class="form-input">
-                            <option value="" selected>Select a Label</option>
+                        <select v-model="publi.label" class="form-input">
+                            <option value="" disabled>Select a Label</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -38,8 +38,8 @@
                     </div>
                     <div class="row">
                         <p>Genre</p>
-                        <select v-model="genre" class="form-input">
-                            <option value="" selected>Select a Genre</option>
+                        <select v-model="publi.genre" class="form-input">
+                            <option value="" disabled>Select a Genre</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -53,33 +53,31 @@
 </template>
 
 <script>
+import { generateId } from "../helpers";
 export default {
+    props: {
+        publisArray: Array,
+        addPubli: { type: Function },
+    },
     data() {
         return {
-            publisArray: Array,
-            description: "",
-            game: "",
-            labels: "",
-            genre: "",
+            publi: {
+                description: "",
+                game: "",
+                label: "",
+                genre: "",
+            },
         };
     },
+    emits: ["sendm"],
+    mounted() {},
     methods: {
-        handleSubmit : function(e) {
-            console.log(this.description)
-            console.log(this.game)
-            console.log(this.labels)
-            console.log(this.genre)
-            let publi = {
-                description: this.description,
-                game: this.game,
-                labels: this.labels,
-                genre: this.genre,
-            }
-            this.publisArray
-            console.log(this.publisArray)
+        handleSubmit: function (e) {
             e.preventDefault();
-        }
-    }
+            console.log('product> ', {...this.publi} );
+            this.$emit("sendm", {id:generateId(),...this.publi});
+        },
+    },
 };
 </script>
 

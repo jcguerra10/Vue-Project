@@ -20,8 +20,6 @@
                         <CommentBar />
                         <Comment  />
                         <Comment />
-                        <Comment />
-                        <Comment />
                     </div>
                 </div>
             </div>
