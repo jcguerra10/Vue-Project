@@ -19,9 +19,9 @@
                     </div>
                 </div>
                 <div class="mt-3 comentary bg-dark-ligth">
-                    <div>
+                    <div class="container--comment">
                         <h1>Comentary</h1>
-                        <div class="container--comment">
+                        <div class="">
                             <form action="" @submit="handleSubmit">
                                 <div class="grid-3-1">
                                     <input
@@ -56,7 +56,6 @@
 
 <script>
 import Comment from "../components/Comment.vue";
-import CommentBar from "../components/CommentBar.vue";
 export default {
     data() {
         return {
@@ -79,11 +78,11 @@ export default {
     methods: {
         handleSubmit(e) {
             e.preventDefault();
-            console.log("sendc", {...this.comment});
-            this.$emit("sendc", this.$route.params.id,{...this.comment});
+            console.log("sendc", { ...this.comment });
+            this.$emit("sendc", this.$route.params.id, { ...this.comment });
         },
     },
-    components: { Comment, CommentBar },
+    components: { Comment },
 };
 </script>
 
@@ -97,5 +96,22 @@ export default {
     align-content: center;
     padding: 3rem;
     border-radius: 0.5rem;
+}
+.container--comment {
+    width: 100%;
+    margin-bottom: 3rem;
+    border-radius: 0.5rem;
+}
+
+.grid-3-1 {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .grid-3-1 {
+        grid-template-columns: 3fr 1fr;
+    }
 }
 </style>
