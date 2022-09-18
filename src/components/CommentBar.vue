@@ -1,6 +1,6 @@
 <template>
     <div class="container--comment">
-        <form action="">
+        <form action="" @submit="handleSubmit">
             <div class="grid-3-1">
                 <input
                     class="form-input"
@@ -8,6 +8,7 @@
                     name="comment"
                     id="comment"
                     placeholder="Comment"
+                    v-model="comment.text"
                 />
                 <button class="button bg-secondary" type="submit">
                     Comment
@@ -18,7 +19,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            comment: {
+                text: "",
+            },
+        };
+    },
+    emits: ["sendc"],
+    methods: {
+        handleSubmit(e) {
+            e.preventDefault();
+            console.log("sendc", {...this.comment});
+            this.$emit("sendc", this.$route.params.id);
+        },
+    },
+};
 </script>
 
 <style>

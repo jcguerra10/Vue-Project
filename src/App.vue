@@ -6,6 +6,7 @@
                 :is="Component"
                 :publisArray="publisArray"
                 @sendm="addPubli"
+                @sendc="addComment"
             ></component>
         </router-view>
     </div>
@@ -24,24 +25,25 @@ export default {
     },
     mounted() {
         if (localStorage.getItem("publis")) {
-            this.publisArray = JSON.parse(localStorage.getItem('publis'));
+            this.publisArray = JSON.parse(localStorage.getItem("publis"));
         }
     },
     methods: {
-        handleClick() {
-            this.$router.push({
-                name: "publis", 
-                params: this.publisArray,
-            });
-        },
         addPubli(publi) {
-            console.log("publi");
             this.publisArray = [...this.publisArray, publi];
             const parsed = JSON.stringify(this.publisArray);
             localStorage.setItem("publis", parsed);
         },
-        persist() {
-            localStorage.publisArray = JSON.stringify(this.publisArray);
+        addComment(idPubli, comment) {
+            const index = this.publisArray
+                .map((object) => object.id)
+                .indexOf(idPubli);
+            this.publisArray[index].comments = [
+                ...this.publisArray[index].comments,
+                comment,
+            ];
+            const parsed = JSON.stringify(this.publisArray);
+            localStorage.setItem("publis", parsed);
         },
     },
     components: {

@@ -57,7 +57,6 @@ import { generateId } from "../helpers";
 export default {
     props: {
         publisArray: Array,
-        addPubli: { type: Function },
     },
     data() {
         return {
@@ -66,16 +65,16 @@ export default {
                 game: "",
                 label: "",
                 genre: "",
+                comments: [],
             },
         };
     },
-    emits: ["sendm"],
-    mounted() {},
+    emits: ["sendm", "sendc"],
     methods: {
         handleSubmit: function (e) {
             e.preventDefault();
-            console.log('product> ', {...this.publi} );
             this.$emit("sendm", {id:generateId(),...this.publi});
+            this.$router.push("/publis")
         },
     },
 };
@@ -96,7 +95,6 @@ export default {
     border-radius: 0.5rem;
     gap: 1rem;
 }
-
 .flex {
     display: flex;
     flex-direction: column;
