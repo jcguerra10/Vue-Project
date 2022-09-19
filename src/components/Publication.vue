@@ -2,7 +2,7 @@
     <div class="publication">
         <div>
             <div class="publication--item">
-                <img class="publication--item__img" src="../resources/img2.jpeg" alt="img publi">
+                <img class="publication--item__img" :src="publi.img" alt="img publi">
             </div>
             <div class="publication--item__description">
                 <p>

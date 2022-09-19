@@ -6,7 +6,7 @@
         <div class="container">
             <form @submit="handleSubmit" class="flex bg-dark-ligth">
                 <div class="row-img">
-                    <div class="img"></div>
+                    <input type="file" @change="handleImage" />
                 </div>
                 <div class="grid">
                     <div class="row">
@@ -67,14 +67,32 @@ export default {
                 genre: "",
                 comments: [],
             },
+            videoGames: [],
+            imageShow: "",
         };
     },
+    mounted() {},
     emits: ["sendm", "sendc"],
     methods: {
         handleSubmit: function (e) {
             e.preventDefault();
-            this.$emit("sendm", {id:generateId(),...this.publi});
-            this.$router.push("/publis")
+            console.log({...this.publi})
+            console.log(this.publi.img)
+            this.$emit("sendm", {
+                id: generateId(),
+                img: this.imageShow,
+                ...this.publi,
+            });
+            this.$router.push("/publis");
+        },
+        handleImage: function (e) {
+            const reader = new FileReader();
+            console.log("reading");
+            reader.addEventListener("load", () => {
+                console.log(reader.result);
+                this.imageShow = reader.result;
+            });
+            reader.readAsDataURL(e.target.files[0]);
         },
     },
 };

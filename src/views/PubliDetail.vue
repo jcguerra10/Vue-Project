@@ -4,7 +4,7 @@
             <div class="row">
                 <img
                     class="publication--item__img"
-                    src="../resources/img2.jpeg"
+                    :src="currentPost.img"
                     alt="Publication"
                 />
                 <div class="comentary bg-dark-ligth">
