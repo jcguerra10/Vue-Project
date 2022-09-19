@@ -45,6 +45,7 @@ h1 {
     text-transform: uppercase;
     color: white;
     transition: 300ms;
+    padding: 1rem 4rem;
 }
 
 .button:hover {
@@ -168,4 +169,26 @@ main {
     border-radius: 5px;
     transition: background-color 0.3s ease;
     background-color: var(--dark);
+}
+
+
+.row {
+    width: 80%;
+}
+
+.container--filter-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 1rem 4rem;
+}
+
+
+@media (min-width: 768px) {
+    .container--filter-bar {
+        flex-direction: row;
+        align-items: end;
+    }
 }

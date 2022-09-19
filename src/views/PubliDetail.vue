@@ -10,7 +10,7 @@
                 <div class="comentary bg-dark-ligth">
                     <div class="">
                         <h1>{{ currentPost.description }}</h1>
-                        <p>Description:</p>
+                        <p>Game:</p>
                         <h2>{{ currentPost.game }}</h2>
                         <p>Label:</p>
                         <h2>{{ currentPost.label }}</h2>

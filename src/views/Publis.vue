@@ -1,9 +1,15 @@
 <template>
+    <FilterBar
+            @filterGame="handleFilterGame"
+            @filterLabel="handleFilterLabel"
+            @filterGenre="handleFilterGenre"
+            @reset="handleReset"
+        />
     <main>
         <div class="container">
             <div
                 class="publisArray"
-                v-for="publi in publisArray"
+                v-for="publi in pub"
                 :key="publi.id"
                 @click="() => onListItemClick(publi)"
             >
@@ -15,16 +21,43 @@
 
 <script>
 import Publication from "../components/Publication.vue";
+import FilterBar from "../components/FilterBar.vue";
 export default {
+    data() {
+        return {
+            pub: [],
+        };
+    },
     props: {
-        publisArray: Array
+        publisArray: Array,
     },
     methods: {
         onListItemClick(publi) {
-            this.$router.push(`/details/${publi.id}`)
+            this.$router.push(`/details/${publi.id}`);
         },
+        handleFilterGame(filter) {
+            this.pub = this.publisArray.filter(
+                (post) => post.game == filter
+            );
+        },
+        handleFilterLabel(filter) {
+            this.pub = this.publisArray.filter(
+                (post) => post.label == filter
+            );
+        },
+        handleFilterGenre(filter) {
+            this.pub = this.publisArray.filter(
+                (post) => post.genre == filter
+            );
+        },
+        handleReset() {
+            this.pub = this.publisArray
+        }
     },
-    components: { Publication },
+    mounted() {
+        this.pub = this.publisArray;
+    },
+    components: { Publication, FilterBar },
 };
 </script>
 

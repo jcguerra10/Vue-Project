@@ -27,7 +27,7 @@
                                 v-for="vg in videoGames"
                                 :value="vg"
                             >
-                            {{vg}}
+                                {{ vg }}
                             </option>
                         </select>
                     </div>
@@ -40,7 +40,7 @@
                                 v-for="lb in labels"
                                 :value="lb"
                             >
-                            {{lb}}
+                                {{ lb }}
                             </option>
                         </select>
                     </div>
@@ -53,7 +53,7 @@
                                 v-for="gn in genres"
                                 :value="gn"
                             >
-                            {{gn}}
+                                {{ gn }}
                             </option>
                         </select>
                     </div>
@@ -65,7 +65,12 @@
 </template>
 
 <script>
-import { generateId, namesOfVideoGames, namesOfLabels, namesOfGenres } from "../helpers";
+import {
+    generateId,
+    namesOfVideoGames,
+    namesOfLabels,
+    namesOfGenres,
+} from "../helpers";
 export default {
     props: {
         publisArray: Array,
@@ -81,7 +86,7 @@ export default {
             },
             videoGames: [],
             labels: [],
-            genres:[],
+            genres: [],
             imageShow: "",
         };
     },
