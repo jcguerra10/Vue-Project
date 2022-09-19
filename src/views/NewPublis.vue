@@ -22,27 +22,39 @@
                         <p>Game</p>
                         <select v-model="publi.game" class="form-input">
                             <option value="" disabled>Select a Game</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option
+                                class="publisArray"
+                                v-for="vg in videoGames"
+                                :value="vg"
+                            >
+                            {{vg}}
+                            </option>
                         </select>
                     </div>
                     <div class="row">
-                        <p>Labels</p>
+                        <p>Label</p>
                         <select v-model="publi.label" class="form-input">
                             <option value="" disabled>Select a Label</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option
+                                class="publisArray"
+                                v-for="lb in labels"
+                                :value="lb"
+                            >
+                            {{lb}}
+                            </option>
                         </select>
                     </div>
                     <div class="row">
                         <p>Genre</p>
                         <select v-model="publi.genre" class="form-input">
                             <option value="" disabled>Select a Genre</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option
+                                class="publisArray"
+                                v-for="gn in genres"
+                                :value="gn"
+                            >
+                            {{gn}}
+                            </option>
                         </select>
                     </div>
                     <button class="button bg-secondary">Send Publi</button>
@@ -53,7 +65,7 @@
 </template>
 
 <script>
-import { generateId } from "../helpers";
+import { generateId, namesOfVideoGames, namesOfLabels, namesOfGenres } from "../helpers";
 export default {
     props: {
         publisArray: Array,
@@ -68,16 +80,22 @@ export default {
                 comments: [],
             },
             videoGames: [],
+            labels: [],
+            genres:[],
             imageShow: "",
         };
     },
-    mounted() {},
+    mounted() {
+        this.videoGames = namesOfVideoGames();
+        this.labels = namesOfLabels();
+        this.genres = namesOfGenres();
+    },
     emits: ["sendm", "sendc"],
     methods: {
         handleSubmit: function (e) {
             e.preventDefault();
-            console.log({...this.publi})
-            console.log(this.publi.img)
+            console.log({ ...this.publi });
+            console.log(this.publi.img);
             this.$emit("sendm", {
                 id: generateId(),
                 img: this.imageShow,

@@ -16,7 +16,7 @@ export const formatDate = (date) => {
 };
 
 export const namesOfVideoGames = () => {
-    return arr = [
+    const arr = [
         "Among Us",
         "Animal Jam",
         "Apex Legends",
@@ -59,4 +59,35 @@ export const namesOfVideoGames = () => {
         "Yu-Gi-Oh! Duel Links",
         "Other"
     ];
+
+    return arr
+};
+
+export const namesOfLabels = () => {
+    const arr = [
+        "Just Share",
+        "Screenshots",
+        "Recommendation",
+        "Blog",
+    ];
+
+    return arr
+};
+
+export const namesOfGenres = () => {
+    const arr = [
+        "Sandbox",
+        "Real-time strategy",
+        "Shooters",
+        "MOBA",
+        "Role-playing",
+        "Simulation and sports",
+        "Puzzlers and party games",
+        "Action-adventure",
+        "Survival and horror",
+        "Platformer",
+        "Other",
+    ];
+
+    return arr
 };
