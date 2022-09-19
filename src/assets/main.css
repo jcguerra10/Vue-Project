@@ -14,6 +14,9 @@
 .bg-dark-ligth {
     background-color: var(--dark-ligth);
 }
+.bg-dark {
+    background-color: var(--dark);
+}
 .bg-secondary {
     background-color: var(--secondary);
 }
@@ -173,7 +176,7 @@ main {
 
 
 .row {
-    width: 80%;
+    width: 100%;
 }
 
 .container--filter-bar {
@@ -189,6 +192,7 @@ main {
 @media (min-width: 768px) {
     .container--filter-bar {
         flex-direction: row;
+        justify-content: center;;
         align-items: end;
     }
 }
