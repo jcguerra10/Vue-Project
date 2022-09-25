@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@braid/vue-formulate": "^2.5.3",
+    "pinia": "^2.0.22",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5",
     "vue-router-dom": "^1.0.0-beta.1"
