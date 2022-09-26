@@ -87,6 +87,11 @@ export default {
 </script>
 
 <style scoped>
+@media (min-width: 980px) {
+    .container {
+        width: 80%;
+    }
+}
 .container-gap {
     gap: 3rem;
 }

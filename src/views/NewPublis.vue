@@ -6,7 +6,11 @@
         <div class="container">
             <form @submit="handleSubmit" class="flex bg-dark-ligth">
                 <div class="row-img">
-                    <input type="file" @change="handleImage" />
+                    <img :src="imageShow" class="publication--item__img "/>
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> Upload
+                    </label>
+                    <input id="file-upload" type="file" @change="handleImage" />
                 </div>
                 <div class="grid">
                     <div class="row">
@@ -71,6 +75,8 @@ import {
     namesOfLabels,
     namesOfGenres,
 } from "../helpers";
+import axios from "axios";
+import Compressor from "compressorjs";
 export default {
     props: {
         publisArray: Array,
@@ -88,12 +94,7 @@ export default {
             labels: [],
             genres: [],
             imageShow: "",
-            /*
-            MAX_WIDTH: 320,
-            MAX_HEIGHT: 180,
-            MIME_TYPE: "image/jpeg",
-            QUALITY: 0.7,
-            */
+            WIDTH: 850,
         };
     },
     mounted() {
@@ -115,68 +116,26 @@ export default {
             this.$router.push("/publis");
         },
         handleImage: function (e) {
-            const reader = new FileReader();
-            console.log("reading");
-            reader.addEventListener("load", () => {
-                console.log(reader.result);
-                this.imageShow = reader.result;
-            });
-            reader.readAsDataURL(e.target.files[0]);
-        },
-        /*
-        handleImage1: function (ev) {
-            const file = ev.target.files[0]; // get the file
-            const blobURL = URL.createObjectURL(file);
-            const img = new Image();
-            img.src = blobURL;
-            img.onerror = function () {
-                URL.revokeObjectURL(this.src);
-                // Handle the failure properly
-                console.log("Cannot load image");
-            };
-            img.onload = function () {
-                URL.revokeObjectURL(this.src);
-                const [newWidth, newHeight] = this.calculateSize(
-                    img,
-                    this.MAX_WIDTH,
-                    this.MAX_HEIGHT
-                );
-                const canvas = document.createElement("canvas");
-                canvas.width = newWidth;
-                canvas.height = newHeight;
-                const ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0, newWidth, newHeight);
-                canvas.toBlob(
-                    (blob) => {
-                        // Handle the compressed image. es. upload or save in local state
-                        console.log("Original file", file);
-                        console.log("Compressed file", blob);
-                    },
-                    this.MIME_TYPE,
-                    this.QUALITY
-                );
-                document.getElementById("root").append(canvas);
-            };
-        },
-        calculateSize: function(img, maxWidth, maxHeight) {
-            let width = img.width;
-            let height = img.height;
+            let image = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = (event) => {
+                let image_url = event.target.result;
+                let image = document.createElement("img");
+                image.src = image_url;
+                image.onload = (e) => {
+                    let canvas = document.createElement("canvas");
+                    let ratio = this.WIDTH / e.target.width;
+                    canvas.width = this.WIDTH;
+                    canvas.height = e.target.height * ratio;
 
-            // calculate the width and height, constraining the proportions
-            if (width > height) {
-                if (width > maxWidth) {
-                    height = Math.round((height * maxWidth) / width);
-                    width = maxWidth;
-                }
-            } else {
-                if (height > maxHeight) {
-                    width = Math.round((width * maxHeight) / height);
-                    height = maxHeight;
-                }
-            }
-            return [width, height];
+                    let context = canvas.getContext("2d");
+                    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                    this.imageShow = context.canvas.toDataURL("image/png", 20);
+                };
+            };
         },
-        */
     },
 };
 </script>
@@ -215,8 +174,13 @@ export default {
 
 .row-img {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
+}
+.row-img__image {
+    border-radius: 0.5rem;
 }
 .img {
     background-color: aliceblue;

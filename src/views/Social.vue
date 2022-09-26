@@ -13,19 +13,21 @@
                 </div>
             </div>
         </main>
-        <div class="container" v-if="show">
-            <div>
-                <h1>Some Random Publis</h1>
-            </div>
-            <div>
-                <div class="container">
-                    <div
-                        class="publisArray"
-                        v-for="publi in pub"
-                        :key="publi.id"
-                        @click="() => onListItemClick(publi)"
-                    >
-                        <Publication :publi="publi" />
+        <div class="container">
+            <div class="container--random-publis" v-if="show">
+                <div>
+                    <h1>Some Random Publis</h1>
+                </div>
+                <div>
+                    <div class="container--publis">
+                        <div
+                            class="publisArray"
+                            v-for="publi in pub"
+                            :key="publi.id"
+                            @click="() => onListItemClick(publi)"
+                        >
+                            <Publication :publi="publi" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,16 +53,16 @@ export default {
         },
     },
     mounted() {
-        const max = this.publisArray.length;
-        const past = -1;
-        const flag = false;
-        const ret = [];
+        let max = this.publisArray.length;
+        let past = -1;
+        let flag = false;
+        let ret = [];
         if (this.publisArray.length > 1) {
             this.show = true;
-            while (flag) {
-                const intRand = Math.floor(Math.random() * max);
+            while (!flag) {
+                let intRand = Math.floor(Math.random() * max);
                 if (past != intRand) {
-                    ret.push(intRand);
+                    ret.push(this.publisArray[intRand]);
                     if (past != -1) {
                         flag = true;
                     } else {
@@ -103,5 +105,21 @@ export default {
 .container--item__img {
     display: flex;
     align-items: end;
+}
+
+.container--random-publis {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.container--random-publis h1 {
+    margin-bottom: 3rem;
+    text-align: center; 
+}
+
+.container--publis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
 }
 </style>
