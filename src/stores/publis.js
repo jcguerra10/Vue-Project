@@ -12,7 +12,7 @@ export const usePublisStore = defineStore("publis", {
     },
     actions: {
         newPubli(publi) {
-            this.publis = [...this.publis, publi];
+            this.publis = [publi, ...this.publis];
             const parsed = JSON.stringify(this.publis);
             localStorage.setItem("publis", parsed);
         },
