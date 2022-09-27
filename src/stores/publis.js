@@ -1,10 +1,11 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
+import { initialValues } from "../helpers/index.js";
 
 export const usePublisStore = defineStore("publis", {
     state: () => ({
         publis: localStorage.getItem("publis")
             ? JSON.parse(localStorage.getItem("publis"))
-            : [],
+            : initialValues(),
     }),
     getters: {
         getPublis: (state) => [...state.publis],
@@ -23,6 +24,11 @@ export const usePublisStore = defineStore("publis", {
                 ...this.publis[index].comments,
                 comment,
             ];
+            const parsed = JSON.stringify(this.publis);
+            localStorage.setItem("publis", parsed);
+        },
+        initPubli(publis) {
+            this.publis = publis;
             const parsed = JSON.stringify(this.publis);
             localStorage.setItem("publis", parsed);
         }

@@ -111,15 +111,22 @@ export default {
     display: flex;
     flex-direction: column;
     width: 80%;
+    padding-bottom: 3rem;
 }
 .container--random-publis h1 {
     margin-bottom: 3rem;
-    text-align: center; 
+    text-align: center;
 }
 
 .container--publis {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .container--publis {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 </style>

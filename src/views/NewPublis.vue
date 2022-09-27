@@ -106,8 +106,6 @@ export default {
     methods: {
         handleSubmit: function (e) {
             e.preventDefault();
-            console.log({ ...this.publi });
-            console.log(this.publi.img);
             this.$emit("sendm", {
                 id: generateId(),
                 img: this.imageShow,

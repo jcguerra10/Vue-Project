@@ -106,6 +106,7 @@ export default {
 .button:hover {
     cursor: pointer;
     color: #fff;
+    background-color: transparent;
     transition: 600ms;
 }
 </style>

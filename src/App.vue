@@ -20,6 +20,13 @@ import NewPublis from "./views/NewPublis.vue";
 import { mapStores } from "pinia";
 import { usePublisStore } from "./stores/publis.js";
 export default {
+    data() {
+        return  {
+            initPublis: [
+                
+            ]
+        }
+    },
     computed: {
         ...mapStores(usePublisStore),
         allPublis() {
