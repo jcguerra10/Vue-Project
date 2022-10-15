@@ -1,22 +1,28 @@
 import { defineStore, acceptHMRUpdate } from "pinia";
 import { initialValues } from "../helpers/index.js";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://xqvbkmwsilgbimeealxp.supabase.co";
+const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdmJrbXdzaWxnYmltZWVhbHhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjU2ODkyNDEsImV4cCI6MTk4MTI2NTI0MX0.3dc49yPjZApCW26NO5FurzkYh9qUmmb6L3DQktU3c0o";
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const { data, error } = await supabase.from("publis").select();
 
 export const usePublisStore = defineStore("publis", {
     state: () => ({
-        publis: localStorage.getItem("publis")
-            ? JSON.parse(localStorage.getItem("publis"))
-            : initialValues(),
+        publis: data.length !== null ? data : initialValues(supabase),
     }),
     getters: {
         getPublis: (state) => [...state.publis],
     },
     actions: {
-        newPubli(publi) {
+        async newPubli(publi) {
             this.publis = [publi, ...this.publis];
-            const parsed = JSON.stringify(this.publis);
-            localStorage.setItem("publis", parsed);
+            const { error } = await supabase.from("publis").insert(publi);
+            console.log(error);
         },
-        newComment(idPubli, comment) {
+        async newComment(idPubli, comment) {
             const index = this.publis
                 .map((object) => object.id)
                 .indexOf(idPubli);
@@ -24,14 +30,12 @@ export const usePublisStore = defineStore("publis", {
                 ...this.publis[index].comments,
                 comment,
             ];
-            const parsed = JSON.stringify(this.publis);
-            localStorage.setItem("publis", parsed);
+
+            const { error } = await supabase
+                .from("publis")
+                .update(this.publis[index])
+                .eq("id", idPubli);
         },
-        initPubli(publis) {
-            this.publis = publis;
-            const parsed = JSON.stringify(this.publis);
-            localStorage.setItem("publis", parsed);
-        }
     },
 });
 

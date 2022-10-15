@@ -86,7 +86,7 @@ export const namesOfGenres = () => {
 
     return arr;
 };
-export const initialValues = () => {
+export const  initialValues = async (supabase) => {
     const arr = [
         {
             id: "1",
@@ -230,7 +230,8 @@ export const initialValues = () => {
             ],
         },
     ];
-    const parsed = JSON.stringify(arr);
-    localStorage.setItem("publis", parsed);
+
+    const { error } = await supabase.from("publis").insert(arr);
+            console.log(error);
     return arr;
 };
