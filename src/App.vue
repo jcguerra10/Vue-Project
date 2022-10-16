@@ -19,18 +19,15 @@ import Publis from "./views/Publis.vue";
 import NewPublis from "./views/NewPublis.vue";
 import { mapStores } from "pinia";
 import { usePublisStore } from "./stores/publis.js";
+
 export default {
     data() {
-        return  {
-            initPublis: [
-                
-            ]
-        }
+        return {};
     },
     computed: {
         ...mapStores(usePublisStore),
         allPublis() {
-            return this.publisStore.getPublis
+            return this.publisStore.getPublis;
         },
     },
     methods: {
