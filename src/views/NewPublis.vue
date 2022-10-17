@@ -6,7 +6,7 @@
         <div class="container">
             <form @submit="handleSubmit" class="flex bg-dark-ligth">
                 <div class="row-img">
-                    <img :src="imageShow" class="publication--item__img "/>
+                    <img :src="imageShow" class="publication--item__img" />
                     <label for="file-upload" class="custom-file-upload">
                         <i class="fa fa-cloud-upload"></i> Upload
                     </label>
@@ -75,9 +75,12 @@ import {
     namesOfLabels,
     namesOfGenres,
 } from "../helpers";
-import axios from "axios";
-import Compressor from "compressorjs";
+import { mapStores } from "pinia";
+import { useUsersStore } from "../stores/users";
 export default {
+    computed: {
+        ...mapStores(useUsersStore),
+    },
     props: {
         publisArray: Array,
     },
@@ -106,12 +109,27 @@ export default {
     methods: {
         handleSubmit: function (e) {
             e.preventDefault();
-            this.$emit("sendm", {
-                id: generateId(),
-                img: this.imageShow,
-                ...this.publi,
-            });
-            this.$router.push("/publis");
+            if (this.usersStore.getActiveUser.user !== undefined) {
+                if (
+                    this.imageShow !== "" &&
+                    this.publi.description !== "" &&
+                    this.publi.game !== "" &&
+                    this.publi.label !== "" &&
+                    this.publi.genre !== ""
+                ) {
+                    this.$emit("sendm", {
+                        id: generateId(),
+                        img: this.imageShow,
+                        userEmail: this.usersStore.getActiveUser.user.email,
+                        ...this.publi,
+                    });
+                    this.$router.push("/publis");
+                } else {
+                    alert("Have Fields Empty!")
+                }
+            } else {
+                alert("Need to Create an Account or Sign in");
+            }
         },
         handleImage: function (e) {
             let image = e.target.files[0];

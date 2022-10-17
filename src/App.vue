@@ -1,6 +1,7 @@
 <template>
     <div>
         <Header />
+        <Sign />
         <router-view v-slot="{ Component }">
             <component
                 :is="Component"
@@ -17,6 +18,7 @@ import Header from "./components/Header.vue";
 import Social from "./views/Social.vue";
 import Publis from "./views/Publis.vue";
 import NewPublis from "./views/NewPublis.vue";
+import Sign from "./components/Sign.vue";
 import { mapStores } from "pinia";
 import { usePublisStore } from "./stores/publis.js";
 
@@ -39,11 +41,12 @@ export default {
         },
     },
     components: {
-        Header,
-        Social,
-        Publis,
-        NewPublis,
-    },
+    Header,
+    Social,
+    Publis,
+    NewPublis,
+    Sign
+},
 };
 </script>
 

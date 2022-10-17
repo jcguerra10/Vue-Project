@@ -48,6 +48,7 @@ export const useUsersStore = defineStore("users", {
                 alert("Error signing out");
                 console.log("---", error);
             }
+            this.activeUser = {}
             localStorage.removeItem("activeUser")
         },
     },

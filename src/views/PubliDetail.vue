@@ -16,12 +16,14 @@
                         <h2>{{ currentPost.label }}</h2>
                         <p>Genre:</p>
                         <h2>{{ currentPost.genre }}</h2>
+                        <p v-if="currentPost.userEmail">Author:</p>
+                        <h2 v-if="currentPost.userEmail">{{ currentPost.userEmail }}</h2>
                     </div>
                 </div>
                 <div class="mt-3 comentary bg-dark-ligth">
                     <div class="container--comment">
                         <h1>Comentary</h1>
-                        <div class="">
+                        <div class="" v-if="canComment">
                             <form action="" @submit="handleSubmit">
                                 <div class="grid-3-1">
                                     <input
@@ -56,9 +58,12 @@
 
 <script>
 import Comment from "../components/Comment.vue";
+import { mapStores } from "pinia";
+import { useUsersStore } from "../stores/users.js";
 export default {
     data() {
         return {
+            canComment: false,
             comment: {
                 text: "",
             },
@@ -69,17 +74,26 @@ export default {
     },
     emits: ["sendc"],
     computed: {
+        ...mapStores(useUsersStore),
         currentPost() {
             return this.publisArray.filter(
                 (post) => post.id == this.$route.params.id
             )[0];
         },
     },
+    mounted() {
+        if (this.usersStore.activeUser.user !== undefined) {
+            console.log;
+            this.canComment = true;
+        }
+    },
     methods: {
         handleSubmit(e) {
             e.preventDefault();
-            console.log("sendc", { ...this.comment });
-            this.$emit("sendc", this.$route.params.id, { ...this.comment });
+            this.$emit("sendc", this.$route.params.id, {
+                userEmail: this.usersStore.getActiveUser.user.email,
+                ...this.comment,
+            });
         },
     },
     components: { Comment },

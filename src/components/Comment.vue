@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="comment bg-dark-ligth">
-            <h2>Comment</h2>
+            <h2>{{ comment.userEmail ? comment.userEmail : "Comment"}}</h2>
             <p>
                 {{ comment.text }}
             </p>

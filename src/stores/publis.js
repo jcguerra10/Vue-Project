@@ -23,12 +23,13 @@ export const usePublisStore = defineStore("publis", {
             console.log(error);
         },
         async newComment(idPubli, comment) {
+            console.log(comment);
             const index = this.publis
                 .map((object) => object.id)
                 .indexOf(idPubli);
             this.publis[index].comments = [
-                ...this.publis[index].comments,
                 comment,
+                ...this.publis[index].comments,
             ];
 
             const { error } = await supabase
