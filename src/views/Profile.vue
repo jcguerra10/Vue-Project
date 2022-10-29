@@ -17,7 +17,6 @@
             <h1> Likes </h1>
         </div>
         <main>
-            
             <div class="container">
                 <div class="click" v-for="lk in likes" :key="lk.id" @click="() => onListItemClick(lk)">
                     <PublicationVue :publi="lk" />
@@ -51,7 +50,7 @@ export default {
             this.getLikesSucces = true;
             console.log("likes", this.likes);
             return this.likes
-        }
+        },
     },
     mounted() {
         if (this.usersStore.getActiveUser.user !== undefined) {

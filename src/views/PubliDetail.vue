@@ -17,8 +17,25 @@
                         <p>Genre:</p>
                         <h2>{{ currentPost.genre }}</h2>
                         <p v-if="currentPost.userEmail">Author:</p>
-                        <h2 v-if="currentPost.userEmail">{{ currentPost.userEmail }}</h2>
-                        <img class="like-img" src="../assets/pulgar-arriba.png"  @click="handleLike" alt="like"/>
+                        <h2 v-if="currentPost.userEmail">
+                            {{ currentPost.userEmail }}
+                        </h2>
+                        <div>
+                            <img
+                                v-if="haveLikeOnPubli"
+                                class="like-img"
+                                src="../assets/pulgar-arriba-act.png"
+                                @click="handleLike"
+                                alt="like"
+                            />
+                            <img
+                                v-else
+                                class="like-img"
+                                src="../assets/pulgar-arriba.png"
+                                @click="handleLike"
+                                alt="like"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div class="mt-3 comentary bg-dark-ligth">
@@ -72,8 +89,8 @@ export default {
             currentP: {},
             like: {
                 publi_id: "",
-                user_id: ""
-            }
+                user_id: "",
+            },
         };
     },
     props: {
@@ -87,8 +104,14 @@ export default {
             const post = this.publisArray.filter(
                 (post) => post.id == this.$route.params.id
             )[0];
-            this.current = post
+            this.current = post;
             return post;
+        },
+        haveLikeOnPubli() {
+            this.like.publi_id = this.currentPost.id;
+            this.like.user_id = this.usersStore.getActiveUser.user.id;
+            console.log("!!!");
+            return this.likesStore.haveLikeOnPubli(this.like);
         },
     },
     mounted() {
@@ -106,11 +129,11 @@ export default {
             });
         },
         handleLike(e) {
-            this.like.publi_id = this.currentPost.id
-            this.like.user_id = this.usersStore.getActiveUser.user.id
-            console.log({...this.like})
-            this.likesStore.addLike(this.like)
-        }   
+            this.like.publi_id = this.currentPost.id;
+            this.like.user_id = this.usersStore.getActiveUser.user.id;
+            console.log({ ...this.like });
+            this.likesStore.addLike(this.like);
+        },
     },
     components: { Comment },
 };
@@ -148,7 +171,7 @@ export default {
     width: 50px;
     height: 50px;
     cursor: pointer;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 @media (min-width: 768px) {

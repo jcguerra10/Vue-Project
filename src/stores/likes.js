@@ -40,6 +40,15 @@ export const useLikesStore = defineStore("likes", {
             console.log(">>>", lks);
             return lks;
         },
+        async haveLikeOnPubli(like) {
+            let { data: likes, error } = await supabase
+                .from("likes")
+                .select("publi_id")
+                .eq("publi_id", like.publi_id)
+                .eq("user_id", like.user_id);
+            console.log(likes.length !== 0)
+            return likes.length !== 0;
+        }
     },
 });
 
