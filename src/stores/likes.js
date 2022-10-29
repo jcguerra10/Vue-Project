@@ -10,17 +10,34 @@ export const useLikesStore = defineStore("likes", {
     getters: {},
     actions: {
         async addLike(like) {
-            const { error } = await supabase.from("likes").insert(like);
-            console.log(error);
+            let { data: likes, error: errorLikes } = await supabase
+                .from("likes")
+                .select("publi_id")
+                .eq("publi_id", like.publi_id)
+                .eq("user_id", like.user_id);
+            if (likes.length === 0) {
+                const { error } = await supabase.from("likes").insert(like);
+                console.log(error);
+            } else {
+                const { error } = await supabase
+                    .from("likes")
+                    .delete()
+                    .eq("publi_id", like.publi_id)
+                    .eq("user_id", like.user_id);
+                console.log(error);
+            }
         },
         async getLikesOfUser(id) {
-            let { data: likes, error } = await supabase.from("likes").select(`publis (*)`).eq("user_id", id);
-            let lks = []
+            let { data: likes, error } = await supabase
+                .from("likes")
+                .select(`publis (*)`)
+                .eq("user_id", id);
+            let lks = [];
             likes.map((lk) => {
-                console.log(lk.publis)
-                lks = [...lks, lk.publis]
-            })
-            console.log(">>>", lks)
+                console.log(lk.publis);
+                lks = [...lks, lk.publis];
+            });
+            console.log(">>>", lks);
             return lks;
         },
     },
