@@ -4,6 +4,8 @@ import Social from "@/views/Social.vue";
 import Publis from "@/views/Publis.vue";
 import NewPublis from "@/views/NewPublis.vue";
 import PubliDetail from "@/views/PubliDetail.vue";
+import Profile from "@/views/Profile.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +29,16 @@ const router = createRouter({
             path: "/details/:id",
             name: "details",
             component: PubliDetail,
+        },
+        {
+            path: "/profile",
+            name: "profile",
+            component: Profile,
+        },
+        {
+            path: "/:notFound(.*)",
+            name: "notFound",
+            component: NotFound,
         }
     ],
 });

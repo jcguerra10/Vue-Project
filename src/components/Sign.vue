@@ -14,7 +14,7 @@
         >
             Sign in
         </button>
-        <h2 v-if="haveUser">
+        <h2 v-if="haveUser" @click="this.$router.push('/profile');" class="user__label">
             {{ this.user.user === undefined ? "" : user.user.email }}
         </h2>
         <button
@@ -209,5 +209,10 @@ button:hover {
 
 .form-input {
     background-color: #4e4e4e;
+}
+
+.user__label {
+    cursor: pointer;
+    overflow: hidden;
 }
 </style>

@@ -18,6 +18,7 @@
                         <h2>{{ currentPost.genre }}</h2>
                         <p v-if="currentPost.userEmail">Author:</p>
                         <h2 v-if="currentPost.userEmail">{{ currentPost.userEmail }}</h2>
+                        <img class="like-img" src="../assets/pulgar-arriba.png"  @click="handleLike" alt="like"/>
                     </div>
                 </div>
                 <div class="mt-3 comentary bg-dark-ligth">
@@ -60,6 +61,7 @@
 import Comment from "../components/Comment.vue";
 import { mapStores } from "pinia";
 import { useUsersStore } from "../stores/users.js";
+import { useLikesStore } from "../stores/likes.js";
 export default {
     data() {
         return {
@@ -67,6 +69,11 @@ export default {
             comment: {
                 text: "",
             },
+            currentP: {},
+            like: {
+                publi_id: "",
+                user_id: ""
+            }
         };
     },
     props: {
@@ -75,10 +82,13 @@ export default {
     emits: ["sendc"],
     computed: {
         ...mapStores(useUsersStore),
+        ...mapStores(useLikesStore),
         currentPost() {
-            return this.publisArray.filter(
+            const post = this.publisArray.filter(
                 (post) => post.id == this.$route.params.id
             )[0];
+            this.current = post
+            return post;
         },
     },
     mounted() {
@@ -95,6 +105,12 @@ export default {
                 ...this.comment,
             });
         },
+        handleLike(e) {
+            this.like.publi_id = this.currentPost.id
+            this.like.user_id = this.usersStore.getActiveUser.user.id
+            console.log({...this.like})
+            this.likesStore.addLike(this.like)
+        }   
     },
     components: { Comment },
 };
@@ -126,6 +142,13 @@ export default {
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr;
+}
+
+.like-img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    padding: .5rem;
 }
 
 @media (min-width: 768px) {
