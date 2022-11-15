@@ -24,7 +24,6 @@ export const useUsersStore = defineStore("users", {
                 email: user.email,
                 password: user.password,
             });
-            console.log(error);
             this.activeUser = data;
             const parsed = JSON.stringify(this.activeUser);
             localStorage.setItem("activeUser", parsed);
@@ -39,6 +38,7 @@ export const useUsersStore = defineStore("users", {
                 console.log("---", error);
             } else {
                 this.activeUser = data;
+                console.log("activeUser", this.activeUser);
             }
             const parsed = JSON.stringify(this.activeUser);
             localStorage.setItem("activeUser", parsed);
