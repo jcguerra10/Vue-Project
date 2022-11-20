@@ -3,6 +3,7 @@
         <div class="row">
             <p>Game</p>
             <select
+                id="gameFilterSelect"
                 @change="handleGame"
                 v-model="gameSelect"
                 class="form-input"
@@ -12,6 +13,7 @@
                     class="publisArray"
                     v-for="vg in videoGames"
                     :value="vg"
+                    :key="vg"
                 >
                     {{ vg }}
                 </option>
@@ -20,12 +22,18 @@
         <div class="row">
             <p>Label</p>
             <select
+                id="labelFilterSelect"
                 @change="handleLabels"
                 v-model="labelSelect"
                 class="form-input"
             >
                 <option value="" disabled>Select a Label</option>
-                <option class="publisArray" v-for="lb in labels" :value="lb">
+                <option
+                    class="publisArray"
+                    v-for="lb in labels"
+                    :value="lb"
+                    :key="lb"
+                >
                     {{ lb }}
                 </option>
             </select>
@@ -33,12 +41,18 @@
         <div class="row">
             <p>Genre</p>
             <select
+                id="genreFilterSelect"
                 @change="handleGenres"
                 v-model="genreSelect"
                 class="form-input"
             >
                 <option value="" disabled>Select a Genre</option>
-                <option class="publisArray" v-for="gn in genres" :value="gn">
+                <option
+                    class="publisArray"
+                    v-for="gn in genres"
+                    :value="gn"
+                    :key="gn"
+                >
                     {{ gn }}
                 </option>
             </select>
@@ -98,7 +112,7 @@ export default {
 
 <style scoped>
 .button {
-    padding:0;
+    padding: 0;
     width: fit-content;
     background-color: transparent;
     color: #0062ff;

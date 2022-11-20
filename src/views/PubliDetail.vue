@@ -64,8 +64,9 @@
                         <div
                             class="comment"
                             v-for="comment in currentPost.comments"
+                            :key="comment.id"
                         >
-                            <Comment :comment="comment" @sendc="" />
+                            <Comment :comment="comment"/>
                         </div>
                     </div>
                 </div>
@@ -79,6 +80,7 @@ import Comment from "../components/Comment.vue";
 import { mapStores } from "pinia";
 import { useUsersStore } from "../stores/users.js";
 import { useLikesStore } from "../stores/likes.js";
+import { generateId } from "../helpers";
 export default {
     data() {
         return {
@@ -123,7 +125,9 @@ export default {
     methods: {
         handleSubmit(e) {
             e.preventDefault();
+
             this.$emit("sendc", this.$route.params.id, {
+                id: generateId(),
                 userEmail: this.usersStore.getActiveUser.user.email,
                 ...this.comment,
             });

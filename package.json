@@ -1,34 +1,35 @@
 {
-  "name": "social-media",
-  "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --port 4173",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
-  },
-  "dependencies": {
-    "@braid/vue-formulate": "^2.5.3",
-    "@supabase/supabase-js": "^2.0.0",
-    "axios": "^0.27.2",
-    "base64toblob": "^0.0.2",
-    "blueimp-canvas-to-blob": "^3.29.0",
-    "compressorjs": "^1.1.1",
-    "is-blob": "^3.0.0",
-    "pinia": "^2.0.22",
-    "vue": "^3.2.37",
-    "vue-image-compressor": "^1.0.3",
-    "vue-image-upload-resize": "^2.3.0",
-    "vue-router": "^4.1.5",
-    "vue-router-dom": "^1.0.0-beta.1",
-    "vue-upload-image": "^1.1.5"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^3.0.1",
-    "jsdom": "^20.0.2",
-    "sass": "^1.54.4",
-    "vite": "^3.0.4",
-    "vitest": "^0.25.2"
-  }
+    "name": "social-media",
+    "version": "0.0.0",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview --port 4173",
+        "test": "vitest --dom",
+        "coverage": "vitest run --coverage"
+    },
+    "dependencies": {
+        "@braid/vue-formulate": "^2.5.3",
+        "@supabase/supabase-js": "^2.0.0",
+        "axios": "^0.27.2",
+        "base64toblob": "^0.0.2",
+        "blueimp-canvas-to-blob": "^3.29.0",
+        "compressorjs": "^1.1.1",
+        "is-blob": "^3.0.0",
+        "pinia": "^2.0.22",
+        "vue": "^3.2.37",
+        "vue-image-compressor": "^1.0.3",
+        "vue-image-upload-resize": "^2.3.0",
+        "vue-router": "^4.1.5",
+        "vue-router-dom": "^1.0.0-beta.1",
+        "vue-upload-image": "^1.1.5"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^3.0.1",
+        "happy-dom": "^7.7.0",
+        "jsdom": "^20.0.2",
+        "sass": "^1.54.4",
+        "vite": "^3.0.4",
+        "vitest": "^0.25.2"
+    }
 }
