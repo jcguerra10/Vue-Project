@@ -13,6 +13,9 @@ export default defineConfig({
                 import.meta.url)),
         },
     },
+    build: {
+        target: 'esnext'
+    },
     test: {
         globals: true,
         environment: "jsdom",
