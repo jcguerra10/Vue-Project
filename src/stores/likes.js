@@ -5,8 +5,6 @@ const supabaseKey =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhxdmJrbXdzaWxnYmltZWVhbHhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjU2ODkyNDEsImV4cCI6MTk4MTI2NTI0MX0.3dc49yPjZApCW26NO5FurzkYh9qUmmb6L3DQktU3c0o";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const { data, error } = await supabase.from("likes").select();
-
 export const useLikesStore = defineStore("likes", {
     state: () => ({}),
     getters: {},

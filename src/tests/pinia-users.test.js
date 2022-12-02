@@ -1,5 +1,5 @@
 import { createPinia, setActivePinia } from "pinia";
-import { afterAll, beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vitest";
 import { useUsersStore } from "../stores/users"
 
 describe('Users Store', () => {
@@ -25,6 +25,7 @@ describe('Users Store', () => {
         expect(store.signOut).toBeInstanceOf(Function)
     })
 
+    /*
     test('signUp adds a user to the store', async () => {
         const store = useUsersStore()
         const user = {
@@ -38,6 +39,8 @@ describe('Users Store', () => {
         store.signOut
     })
 
+    */
+   
     /* test('signIn adds a user to the store', async () => {
         const store = useUsersStore()
         const user = {
@@ -49,7 +52,9 @@ describe('Users Store', () => {
         await store.signIn(user)
         expect(store.getActiveUser.user).not.null
     })
+    */
 
+    /*
     test('signOut removes a user from the store', async () => {
         const store = useUsersStore()
         const user = {
